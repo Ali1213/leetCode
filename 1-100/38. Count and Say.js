@@ -50,3 +50,32 @@ var countAndSay = function(n) {
   }
 };
 
+
+// beat 78.01%
+/**
+ * @param {number} n
+ * @return {string}
+ */
+var countAndSay = function(n) {
+  let v = "1";
+  if(n === 1) return v;
+  let i = 1;
+  while(i<n){
+      i++;
+      v = say(v);
+  }
+  return v;
+  function say(v){
+      let r = [], count = 1;
+      for(let i = 0;i<v.length;i++){
+          if(v[i] === v[i+1]){
+              count++;
+          } else {
+              r.push(count === 1 ? '1'+v[i] : count + v[i] );
+              count = 1;
+          }
+      }
+      return r.join('');
+  }
+};
+
