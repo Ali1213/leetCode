@@ -32,3 +32,23 @@ var maxProfit = function(prices) {
   }
   return profit;
 };
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var max = (a,b)=> a>b ? a:b;
+
+var maxProfit = function(prices) {
+  if(prices === null || prices.length === 0) return 0;
+  let profit = 0;
+  let min = prices[0];
+  for(let i= 0,len=prices.length;i<len;i++){
+      if(prices[i] < min){
+          min = prices[i];
+      }else{
+          profit = max(prices[i] - min,profit);
+      }
+  }
+  return profit;
+};
