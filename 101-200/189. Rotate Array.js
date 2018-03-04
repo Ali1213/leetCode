@@ -95,3 +95,14 @@ var rotate = function(nums, k) {
     nums.splice(0,0,...nums.slice(pos))
     nums.length = len;
 };
+
+// beat 85.43%
+var rotate = function(nums, k) {
+    if(nums === null || nums.length < 2 || k === 0 ) return;
+    let len = nums.length;
+    k = k % len;
+    while(--k>=0){
+        nums.unshift(nums.pop());
+    }
+    
+};
