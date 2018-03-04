@@ -79,3 +79,19 @@ var rotate = function(nums, k) {
         
     }
 };
+
+
+// beat 88.74%
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var rotate = function(nums, k) {
+    if(nums === null || nums.length < 2 || k === 0 ) return;
+    let len = nums.length;
+    k = k % len;
+    let pos = len-k;
+    nums.splice(0,0,...nums.slice(pos))
+    nums.length = len;
+};
