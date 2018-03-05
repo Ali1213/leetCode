@@ -30,3 +30,22 @@ var moveZeroes = function(nums) {
       ++now;
   }
 };
+
+
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var moveZeroes = function(nums) {
+  if(!Array.isArray(nums) || nums.length === 1) return ;
+  let len = nums.length, now=0, realPos = 0;
+  while(now<len){
+      if(nums[now] !== 0){
+          if(now !== realPos){
+              [nums[now],nums[realPos]] = [nums[realPos],nums[now]];
+          }
+          ++realPos;
+      }
+      ++now;
+  }
+};
