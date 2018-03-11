@@ -23,7 +23,7 @@ const convertToTitle = function(num){
     let s = '';
     while(num>0){
         let plus = (num-1)%26;
-        s  =  char(parseInt(plus)) + s;
+        s  =  char(plus) + s;
         num = ((num-1)/26)>>0;
     }
     return s;
