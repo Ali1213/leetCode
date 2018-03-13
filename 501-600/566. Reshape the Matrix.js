@@ -53,8 +53,7 @@ var matrixReshape = function(nums, r, c) {
                 ++x;
                 y = 0;
             }
-            wrap[i][j] = nums[x][y];
-            ++y;
+                 ++y;
         }
     }
     return wrap;
