@@ -21,3 +21,24 @@ var maxArea = function(height) {
     }
     return contain;
 };
+
+
+// beat 80.07%  根据测试结果做了一次诡异的优化
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+var maxArea = function(height) {
+    let l = 0;let r = height.length-1;
+    let contain = 0;
+    while(l<r){
+        if(height[l]<height[r]){
+            contain = Math.max(contain, height[l] * (r-l))
+            l++;
+        }else{
+            contain = Math.max(contain, height[r] * (r-l))
+            r--;
+        }
+    }
+    return contain;
+};
