@@ -48,3 +48,76 @@ var generateMatrix = function(n) {
     }
     return result;
 };
+
+
+// beat 16.18%
+/**
+ * @param {number} n
+ * @return {number[][]}
+ */
+var generateMatrix = function(n) {
+    let result = new Array(n);
+    for(let i = 0;i<n;i++){
+        result[i] = new Array(n);
+    }
+    let rowBegin = 0, rowEnd = n-1, colBegin = 0, colEnd = n-1;
+    let now = 0;
+    while(rowBegin<=rowEnd && colBegin<=colEnd){
+        for(let i = colBegin;i<=colEnd;i++){
+            result[rowBegin][i] = ++now;
+        }
+        ++rowBegin;
+        for(let i = rowBegin;i<=rowEnd;i++){
+            result[i][colEnd] = ++now;
+        }
+        --colEnd;
+        for(let i = colEnd;i>=colBegin;i--){
+            result[rowEnd][i] = ++now;
+        }
+        --rowEnd;
+        for(let i = rowEnd;i>=rowBegin;i--){
+            result[i][colBegin] = ++now;
+        }
+        ++colBegin;
+        
+    }
+    return result;
+};
+
+
+
+
+// beat 82.35%
+/**
+ * @param {number} n
+ * @return {number[][]}
+ */
+var generateMatrix = function(n) {
+    let result = new Array(n).fill().map( () => new Array(n).fill(0) );
+    let rowBegin = 0, rowEnd = n-1, colBegin = 0, colEnd = n-1;
+    let now = 0;
+    while(rowBegin<=rowEnd && colBegin<=colEnd){
+        for(let i = colBegin;i<=colEnd;i++){
+            result[rowBegin][i] = ++now;
+        }
+        ++rowBegin;
+        for(let i = rowBegin;i<=rowEnd;i++){
+            result[i][colEnd] = ++now;
+        }
+        --colEnd;
+        if(rowBegin<=rowEnd){
+            for(let i = colEnd;i>=colBegin;i--){
+                result[rowEnd][i] = ++now;
+            }
+            --rowEnd;
+        }
+        if(colBegin<=colEnd){
+            for(let i = rowEnd;i>=rowBegin;i--){
+                result[i][colBegin] = ++now;
+            }
+            ++colBegin;
+        }
+        
+    }
+    return result;
+};
