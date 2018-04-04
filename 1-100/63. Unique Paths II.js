@@ -59,3 +59,27 @@ var uniquePathsWithObstacles = function (obstacleGrid) {
   }
   return store[y - 1][x - 1];
 };
+
+
+
+// beat 82.61%
+// ==!
+/**
+ * @param {number[][]} obstacleGrid
+ * @return {number}
+ */
+var uniquePathsWithObstacles = function (obstacleGrid) {
+  let y = obstacleGrid.length, x = obstacleGrid[0].length;
+    let r = new Array(y);
+    r[0] = obstacleGrid[0][0] === 1 ? 0 : 1;
+    for(let i=0;i<x;i++){
+        for(let j = 0;j<y;j++){
+            if(obstacleGrid[j][i] === 1){
+                r[j] = 0;
+            }else if(j>0){
+                r[j] = (r[j] || 0) + r[j-1];
+            }
+        }
+    }
+    return r[y-1] || 0;
+};
