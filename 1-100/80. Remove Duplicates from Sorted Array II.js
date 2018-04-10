@@ -6,6 +6,7 @@
 
 // Your function should return length = 5, with the first five elements of nums being 1, 1, 2, 2 and 3. It doesn't matter what you leave beyond the new length.
 
+// need extra place
 // beat 95.6%
 /**
  * @param {number[]} nums
@@ -23,4 +24,21 @@ var removeDuplicates = function(nums) {
         nums[i] = store[i];
     }
     return store.length;
+};
+
+
+// beat 100%
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+    let pos = 0,l = nums.length;
+    for(let i=0;i<l;i++){
+        if(nums[i] !== nums[i+2] || i>l-2){
+            nums[pos] = nums[i];
+            ++pos;
+        }
+    }
+    return pos;
 };
