@@ -36,3 +36,32 @@ var minSubArrayLen = function(s, nums) {
     }
     return minLen;
 };
+
+
+// beat 95.86%
+/**
+ * @param {number} s
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minSubArrayLen = function(s, nums) {
+    if(s === 0 || nums.length === 0) return 0;
+    let start = 0,
+        end = 0,
+        min = Number.MAX_SAFE_INTEGER,
+        sum = 0;
+    while(start < nums.length && end < nums.length){
+        
+        while(end< nums.length && sum< s){
+              sum += nums[end++];
+        }
+        
+        while(sum>=s && start < nums.length){
+            min = Math.min(min,end-start);
+            sum -= nums[start++];
+        }
+        
+    }
+    
+    return min === Number.MAX_SAFE_INTEGER ? 0 : min;
+};
