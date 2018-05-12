@@ -37,3 +37,27 @@ function def(k, n, start, results, arr){
         def(k-1, n-i, i+1, results, a)
     }
 }
+
+
+// 这样可以节约些空间
+/**
+ * @param {number} k
+ * @param {number} n
+ * @return {number[][]}
+ */
+var combinationSum3 = function(k, n) {
+    const results = [];
+    def(k,n,1,results,[])
+    return results
+};
+
+function def(k, n, start, results, arr){
+    if(n < 0) return 
+    if(n == 0 && k == 0) return results.push(arr.slice())
+    if(k <= 0) return;
+    for(let i = start; i < 10; i++){
+        arr.push(i)
+        def(k-1, n-i, i+1, results, arr)
+        arr.pop()
+    }
+}
