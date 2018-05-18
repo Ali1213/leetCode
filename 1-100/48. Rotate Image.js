@@ -70,3 +70,29 @@ var rotate = function(matrix) {
         startY++;
     }
 };
+
+
+
+/**
+ * @param {number[][]} matrix
+ * @return {void} Do not return anything, modify matrix in-place instead.
+ */
+var rotate = function(matrix) {
+    let n = matrix.length-1;
+    let midX = n/2;
+    let startX = 0, startY = 0;
+    while(startX < midX){
+        let boundary  = n - startY;
+        let startX2 = startY;
+        let startY2 = boundary
+        let startX3 = boundary;
+        let startY3 = boundary;
+        let startX4 = startY3;
+        let startY4 = startX;
+        for(let i = startY; i< boundary;i++){
+            [matrix[startX][i],matrix[startX4--][startY4],matrix[startX3][startY3--],matrix[startX2++][startY2]] = [matrix[startX4][startY4],matrix[startX3][startY3],matrix[startX2][startY2],matrix[startX][i]];   
+        }
+        startX++;
+        startY++;
+    }
+};
