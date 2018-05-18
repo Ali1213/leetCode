@@ -19,7 +19,7 @@ submitWithComment(){
 
 submitWithoutComment(){
     git add . ;
-    git commit -m "自动提交:$(date +\"%Y/%m/%d %H:%M:%S\")" ;
+    git commit -m "自动提交:$(date +"%Y/%m/%d %H:%M:%S")" ;
     git push origin master ;
     echo "成功提交";
     # exit 0;
@@ -48,19 +48,18 @@ else
     do  
         case $number in
         "自动提交")
-            echo 1
             submitWithoutComment
+            exit 0 
         ;;
         "设置用户名和邮箱为github")
-            echo 2
             setUserNameAndEmailGitHub
+            exit 0 
         ;;
         "设置用户名和邮箱为ucloud")
-            echo 3
             setUserNameAndEmailUcloudGitlab
+            exit 0 
         ;;
         *)
-            echo $number
             exit 0
         ;; 
         esac
