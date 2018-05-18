@@ -1,13 +1,5 @@
 #!/bin/bash
 # date 2018/03/07
-# if [ ! -n "$1" ]; then
-# echo "必须带上commit"
-# exit 1
-# fi
-
-# git add . ;
-# git commit -m "$1" ;
-# git push origin master ;
 
 submitWithComment(){
     git add . ;
@@ -44,11 +36,17 @@ if [ -n "$1" ]; then
 else
     PS3='Please choose your number: ' # 设置提示符字串.  
     echo
-    select number in "自动提交" "设置用户名和邮箱为github" "设置用户名和邮箱为ucloud"
+    select number in "自动提交" "带注释提交" "设置用户名和邮箱为github" "设置用户名和邮箱为ucloud"
     do  
         case $number in
         "自动提交")
             submitWithoutComment
+            exit 0 
+        ;;
+        "带注释提交")
+            echo -n "请输入注释："
+            read comment
+            submitWithComment comment
             exit 0 
         ;;
         "设置用户名和邮箱为github")
