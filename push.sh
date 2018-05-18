@@ -44,7 +44,7 @@ else
             exit 0 
         ;;
         "带注释提交")
-            echo -n "请输入注释："
+            echo "请输入注释：\c"
             read comment
             submitWithComment comment
             exit 0 
