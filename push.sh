@@ -32,7 +32,7 @@ setUserNameAndEmailUcloudGitlab(){
 }
 
 if [ -n "$1" ]; then 
-    submitWithComment;
+    submitWithComment $1;
 else
     PS3='Please choose your number: ' # 设置提示符字串.  
     echo
