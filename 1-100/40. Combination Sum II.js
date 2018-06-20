@@ -55,3 +55,31 @@ var combinationSum2 = function(candidates, target) {
         }
     }
 };
+
+
+// beat 90.81%
+/**
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+var combinationSum2 = function(candidates, target) {
+    let sortArr = candidates.sort((a,b)=>a-b)
+    let results = [];
+    addResult([],0,0)
+    
+    
+    return results
+    function addResult(result,start,total){
+        if(total>target) return
+        if(total === target) {
+                results.push(result.slice())
+        }
+        for(let i=start;i<sortArr.length;i++){
+            if(i>start && sortArr[i] === sortArr[i-1]) continue
+            result.push(sortArr[i])
+            addResult(result,i+1,total+sortArr[i])
+            result.pop()
+        }
+    }
+};
