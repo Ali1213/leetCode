@@ -14,22 +14,46 @@
  * @param {number} k
  * @return {number}
  */
-var subarraySum = function(nums, k) {
+var subarraySum = function (nums, k) {
     let n = nums.length
     let count = 0;
-    
-    if(n === 0) return count;
-    
+
+    if (n === 0) return count;
+
     let start = 0;
-    for(let i = 0; i<n;i++){
+    for (let i = 0; i < n; i++) {
         start += nums[i]
         let total = start;
-        if(start == k) count++
-        for(let j = i+1; j<n; j++ ){
-            total = total + nums[j] - nums[j-i-1]
-            if(total == k) count++
+        if (start == k) count++
+        for (let j = i + 1; j < n; j++) {
+            total = total + nums[j] - nums[j - i - 1]
+            if (total == k) count++
         }
     }
     return count;
-    
+
+};
+
+
+
+
+// O(n)的算法
+// beat 98.78%
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var subarraySum = function (nums, k) {
+    let sum = 0, count = 0;
+    let hash = new Map([[0, 1]])
+
+    for (let i = 0; i < nums.length; i++) {
+        sum += nums[i]
+        if (hash.has(sum - k)) {
+            count += hash.get(sum - k)
+        }
+        hash.set(sum, (hash.get(sum) + 1) || 1)
+    }
+    return count
 };
