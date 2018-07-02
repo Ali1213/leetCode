@@ -17,20 +17,45 @@
  * @param {number[]} nums
  * @return {number}
  */
-var triangleNumber = function(nums) {
-    nums = nums.sort((a,b)=>a-b)
+var triangleNumber = function (nums) {
+    nums = nums.sort((a, b) => a - b)
     let total = 0;
-    for(let i = 0; i< nums.length-2;i++){
-        for(let j=i+1;j<nums.length-1;j++){
-            for(let k = j+1; k< nums.length;k++){
-                if(nums[i]+nums[j]>nums[k]){
+    for (let i = 0; i < nums.length - 2; i++) {
+        for (let j = i + 1; j < nums.length - 1; j++) {
+            for (let k = j + 1; k < nums.length; k++) {
+                if (nums[i] + nums[j] > nums[k]) {
                     total++;
-                }else{
+                } else {
                     break;
                 }
             }
         }
     }
-    
-    return total; 
+
+    return total;
+};
+
+
+
+// beat 91.07%
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var triangleNumber = function (nums) {
+    nums.sort((a, b) => a - b)
+    let total = 0;
+    for (let k = nums.length - 1; k > 1; k--) {
+        let i = 0, j = k - 1
+        while (i < j) {
+            if (nums[i] + nums[j] > nums[k]) {
+                total += j - i
+                j--
+            } else {
+                i++
+            }
+        }
+    }
+
+    return total;
 };
