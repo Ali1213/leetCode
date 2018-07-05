@@ -20,3 +20,20 @@
 
 // 1 <= A.length = A[0].length <= 20
 // 0 <= A[i][j] <= 1
+
+
+// 居然没有beat
+/**
+ * @param {number[][]} A
+ * @return {number[][]}
+ */
+var flipAndInvertImage = function (A) {
+    for (let i = 0; i < A.length; i++) {
+        A[i].reverse();
+        for (let j = 0; j < A[0].length; j++) {
+            A[i][j] = 1 - A[i][j]
+        }
+    }
+
+    return A
+};
