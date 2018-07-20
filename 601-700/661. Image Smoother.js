@@ -85,3 +85,48 @@ var imageSmoother = function (M) {
         return Math.floor(v / t)
     }
 };
+
+
+
+
+
+
+// beat 1.54%
+/**
+ * @param {number[][]} M
+ * @return {number[][]}
+ */
+var imageSmoother = function (M) {
+    let m = M.length;
+    let n = M[0].length;
+    let result = new Array(m)
+    for (let i = 0; i < m; i++) {
+        result[i] = new Array(n)
+    }
+
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
+            let count = 0, t = 0;
+            let x = i - 1;
+            while (x <= i + 1) {
+                if (x == m || x < 0) {
+                    x++
+                    continue;
+                };
+                let y = j - 1;
+                while (y <= j + 1) {
+                    if (y == n || y < 0) {
+                        y++
+                        continue;
+                    }
+                    count += M[x][y]
+                    t++
+                    y++
+                }
+                x++
+            }
+            result[i][j] = Math.floor(count / t)
+        }
+    }
+    return result;
+};
