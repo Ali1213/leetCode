@@ -37,3 +37,24 @@ var isIdealPermutation = function (A) {
     }
     return true
 };
+
+
+// beat 100%
+
+/**
+ * @param {number[]} A
+ * @return {boolean}
+ */
+var isIdealPermutation = function(A) {
+    if(A.length<3) return true
+    
+    let noLocalMax = A[0]
+    let prev = A[1]
+    for(let i = 2; i< A.length;i++){
+        let current = A[i]
+        if(current < noLocalMax) return false
+        noLocalMax = Math.max(noLocalMax, prev)
+        prev = current
+    }
+    return true
+};
