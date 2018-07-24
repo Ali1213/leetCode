@@ -21,7 +21,7 @@
 // In calls to MyCalendar.book(start, end), start and end are integers in the range [0, 10^9].
 
 // beat 53.33%
-var MyCalendar = function() {
+var MyCalendar = function () {
     this.datas = []
 };
 
@@ -30,12 +30,58 @@ var MyCalendar = function() {
  * @param {number} end
  * @return {boolean}
  */
-MyCalendar.prototype.book = function(start, end) {
-    for(let i = 0; i< this.datas.length;i++){
-        if(this.datas[i][0]< end && this.datas[i][1]  > end  || this.datas[i][1]> start && this.datas[i][0]< start || this.datas[i][0] >= start && this.datas[i][1] <= end){
+MyCalendar.prototype.book = function (start, end) {
+    for (let i = 0; i < this.datas.length; i++) {
+        if (this.datas[i][0] < end && this.datas[i][1] > end || this.datas[i][1] > start && this.datas[i][0] < start || this.datas[i][0] >= start && this.datas[i][1] <= end) {
             return false
         }
     }
-    this.datas.push([start,end])
+    this.datas.push([start, end])
     return true
+};
+
+
+
+var MyCalendar = function () {
+    this.root = null
+};
+
+function Node(start, end) {
+    this.start = start
+    this.end = end
+    this.left = null
+    this.right = null
+}
+
+/** 
+ * @param {number} start 
+ * @param {number} end
+ * @return {boolean}
+ */
+MyCalendar.prototype.book = function (start, end) {
+    if (this.root === null) {
+        this.root = new Node(start, end)
+        return true
+    }
+
+
+    var compare = (start, end, root) => {
+        if (root.end <= start) {
+            if (root.right === null) {
+                root.right = new Node(start, end)
+                return true;
+            }
+            return compare(start, end, root.right)
+        } else if (root.start >= end) {
+            if (root.left === null) {
+                root.left = new Node(start, end)
+                return true;
+            }
+            return compare(start, end, root.left)
+        } else {
+            return false
+        }
+    }
+    return compare(start, end, this.root)
+
 };
