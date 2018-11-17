@@ -34,3 +34,24 @@ var sortArrayByParity = function (A) {
     }
     return A
 };
+
+
+// beat 99.95%
+// 看来解构赋值的效率还是略微有点低啊
+/**
+ * @param {number[]} A
+ * @return {number[]}
+ */
+var sortArrayByParity = function(A) {
+    if(A === null || A.length<2) return A
+    let pos=0;
+    for(let i = 0;i<A.length;i++){
+        if(A[i]%2==0){
+            let temp = A[i];
+            A[i] = A[pos];
+            A[pos] = temp;
+            pos += 1;
+        }
+    }
+    return A
+};
