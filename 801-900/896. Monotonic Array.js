@@ -60,3 +60,23 @@ var isMonotonic = function(A) {
     }
     return true;
 };
+
+// beat 91.48%
+/**
+ * @param {number[]} A
+ * @return {boolean}
+ */
+var isMonotonic = function(A) {
+    if( !A) return false;
+    
+    if(A[0] < A[A.length - 1]){
+        for(let i = 1; i< A.length; i++){
+            if(A[i] < A[i-1]) return false
+        }
+    } else {
+        for(let i = 1; i< A.length; i++){
+            if(A[i] > A[i-1]) return false
+        }
+    }
+    return true
+};
