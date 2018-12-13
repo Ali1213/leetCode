@@ -60,3 +60,42 @@ MyCalendarTwo.prototype.book = function(start, end) {
  * var obj = Object.create(MyCalendarTwo).createNew()
  * var param_1 = obj.book(start,end)
  */
+
+
+
+
+// beat 53.57%
+// 看来构造数组的代价其实挺小的， 猜测可能是虽然构造了数组，但变相的减少了因长度增加导致数组复制的次数
+
+var MyCalendarTwo = function() {
+    this.first = [];
+    this.second = []
+};
+/** 
+ * @param {number} start 
+ * @param {number} end
+ * @return {boolean}
+ */
+MyCalendarTwo.prototype.book = function(start, end) {
+    
+    let i = start
+    
+    for(let i = 0; i< this.second.length; i++){
+        if(end > this.second[i][0] && this.second[i][1] > start){
+            return false
+        }
+    }
+    for(let i = 0; i< this.first.length; i++){
+        if(end > this.first[i][0] && this.first[i][1] > start){
+            this.second.push([Math.max(start,this.first[i][0]), Math.min(this.first[i][1], end)])
+        }
+    }
+    this.first.push([start,end])
+    return true
+};
+
+/** 
+ * Your MyCalendarTwo object will be instantiated and called as such:
+ * var obj = Object.create(MyCalendarTwo).createNew()
+ * var param_1 = obj.book(start,end)
+ */
