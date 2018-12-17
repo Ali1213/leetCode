@@ -61,3 +61,28 @@ var numJewelsInStones = function(J, S) {
     return m;
 };
 
+/**
+ * @param {string} J
+ * @param {string} S
+ * @return {number}
+ */
+var numJewelsInStones = function(J, S) {
+    
+    let s = {}
+    
+    
+    for(let i = 0; i<J.length; i++){
+        s[J[i]] = 1;
+    }
+    
+    
+    let m = 0;
+    for(let i=0; i<S.length; i++){
+        
+        if(s[S[i]] === 1){
+            m = m + 1;
+        }
+    }
+    
+    return m;
+};
