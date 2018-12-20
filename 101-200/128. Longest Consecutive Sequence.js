@@ -10,6 +10,7 @@ Output: 4
 Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4. */
 
 
+// 算法复杂度o(n), 空间O(n)
 // beat 87.71%
 /**
  * @param {number[]} nums
