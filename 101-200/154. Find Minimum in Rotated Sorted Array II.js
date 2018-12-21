@@ -34,3 +34,71 @@ var findMin = function(nums) {
     }
     return min
 };
+
+
+// beat 88.78%
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMin = function(nums) {
+    let start = 0, end = nums.length-1,n = 0;
+
+   while(start < end){
+       if(end - start === 1) return Math.min(nums[start], nums[end])
+    n = (start + end)/2>>0
+    if(nums[n] > nums[end]){
+        start = n;     
+    }else if (nums[n] === nums[end]) {
+        if(nums[n] === nums[start]){
+            start += 1;
+        }else {
+            end = n;
+        }
+    } else {
+        end = n;
+    }   
+
+   }
+    return nums[n]
+}
+
+
+// beat 88.78%
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMin = function(nums) {
+    if(nums.length > 10){
+        let min = Number.MAX_SAFE_INTEGER;
+        for(let i = 0; i< nums.length; i++){
+            min = Math.min(nums[i], min)
+        }
+        return min
+    } else {
+        let start = 0, end = nums.length-1,n = 0;
+        
+       while(start < end){
+           if(end - start === 1) return Math.min(nums[start], nums[end])
+        n = (start + end)/2>>0
+        if(nums[n] > nums[end]){
+            start = n;     
+        }else if (nums[n] === nums[end]) {
+            if(nums[n] === nums[start]){
+                start += 1;
+            }else {
+                end = n;
+            }
+        } else {
+            end = n;
+        }   
+        
+       }
+        return nums[n]
+    }
+    
+    
+};
