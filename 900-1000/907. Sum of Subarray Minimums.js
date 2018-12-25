@@ -83,3 +83,43 @@ var sumSubarrayMins = function(A) {
     }
     return total
 };
+
+
+
+//  beat 100%
+/**
+ * @param {number[]} A
+ * @return {number}
+ */
+
+var sumSubarrayMins = function(A) {
+    
+    let left = new Array(A.length)
+    let right = new Array(A.length)
+    left[0] = -1
+    
+    for(let i = 1; i< A.length; i++){
+        let p = i - 1;
+        while(p>=0 && A[p] >= A[i]){
+            p = left[p];
+        }
+        left[i] = p;
+    }
+    
+    right[A.length -1] = A.length
+    for(let i = A.length -2; i>=0; i--){
+        let p = i + 1;
+        while(p< A.length && A[p] > A[i]){
+            p = right[p];
+        }
+        right[i] = p;
+    }
+    let total = 0;
+    
+    
+    for(let i = 0; i< A.length; i++){
+        total += (i - left[i]) * (right[i] - i) * A[i] % 1000000007
+        total = total % 1000000007
+    }
+    return total
+};
