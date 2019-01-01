@@ -75,3 +75,32 @@ var maxChunksToSorted = function(arr) {
     
     return splits
 };
+
+
+// 0.00%
+// shit 依然百分之零
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+var maxChunksToSorted = function(arr) {
+    let sortArr = arr.slice().sort((a,b) => a - b);
+    
+    let splits = 0;
+    
+    let max = 0;
+    for(let i = 0; i< arr.length; i++){
+        if(arr[i] === sortArr[i] && max === i){
+                max = i + 1;
+                splits += 1;
+        } else {
+            let pos = sortArr.indexOf(arr[i]);
+            sortArr[pos] = -1;
+            max = Math.max(pos,max);
+            if(max === i) splits += 1;
+        }
+        
+    }
+    
+    return splits
+};
