@@ -104,3 +104,38 @@ var maxChunksToSorted = function(arr) {
     
     return splits
 };
+
+
+
+// 通过优化查找的索引，又优化了一些，但是依然beat 0.00%
+
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+var maxChunksToSorted = function(arr) {
+    let sortArr = arr.slice().sort((a,b) => a - b);
+    
+    let splits = 0;
+    
+    let max = 0;
+    let start = 0;
+    for(let i = 0; i< arr.length; i++){
+        if(arr[i] === sortArr[i] && max === i){
+                max = i + 1;
+                start = max;
+                splits += 1;
+        } else {
+            let pos = sortArr.indexOf(arr[i],start);
+            sortArr[pos] = -1;
+            max = Math.max(pos,max);
+            if(max === i) {
+                splits += 1;
+                start = max;
+            }
+        }
+        
+    }
+    
+    return splits
+};
