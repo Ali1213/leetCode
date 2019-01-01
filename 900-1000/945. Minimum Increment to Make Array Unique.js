@@ -47,3 +47,38 @@ var minIncrementForUnique = function(A) {
     
     return ans;
 };
+
+//  beat 89.13%
+/**
+ * @param {number[]} A
+ * @return {number}
+ */
+var minIncrementForUnique = function(A) {
+    let q = {};
+    for(let i = 0; i< A.length; i++){
+        if(q[A[i]] === undefined){
+             q[A[i]] = 1
+        } else {
+            q[A[i]] ++;
+        }
+    }
+    let k = Object.keys(q)
+    k.push(80000)
+    let ans = 0, taken = 0;
+    for(let i = 0; i< k.length; i++){
+        if(Number(q[k[i]]) > 1){
+            taken += q[k[i]] - 1
+            ans -= (q[k[i]] - 1) * Number(k[i])
+        }
+        if( taken > 0 && k[i+1] && k[i+1] - k[i] > 1){
+           if(k[i+1] - k[i] - 1 < taken){
+               taken -= k[i+1] - k[i] - 1;
+               ans += (Number(k[i+1]) + Number(k[i])) * (k[i+1] - k[i] - 1) / 2
+           } else {
+               ans += (Number(k[i]) + 1  + taken + Number(k[i])) * (taken) / 2
+               taken = 0
+           }
+        }
+    }
+    return ans;
+};
