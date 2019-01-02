@@ -139,3 +139,29 @@ var maxChunksToSorted = function(arr) {
     
     return splits
 };
+
+
+// beat 100%
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+var maxChunksToSorted = function(arr) {
+    let leftMax = new Array(arr.length);
+    let rightMin = new Array(arr.length);
+    leftMax[0] = arr[0];
+    
+    for(let i = 1; i<arr.length; i++){
+        leftMax[i] = Math.max(leftMax[i-1], arr[i]);
+    }
+    rightMin[arr.length -1] = arr[arr.length - 1]
+    for(let i = arr.length - 2; i>= 0; i--){
+        rightMin[i] = Math.min(rightMin[i+1], arr[i]);
+    }
+    
+    let total = 1;
+    for(let i = 0; i< arr.length-1; i++){
+        if(leftMax[i] <= rightMin[i+1]) total++;
+    }
+    return total;
+};
