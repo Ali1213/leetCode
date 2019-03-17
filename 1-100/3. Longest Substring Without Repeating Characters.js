@@ -57,3 +57,51 @@ var lengthOfLongestSubstring = function (s) {
     maxLen = Math.max(maxLen, now);
     return maxLen;
 };
+
+
+
+/**
+ * 运行时间 beat  59.00% 
+ * 内存 beat  62.06%
+ * 
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function (s) {
+    let maxLen = 0;
+    let pos = 0;
+    let dict = {
+
+    }
+    let i = 0;
+    while (i < s.length) {
+        if (dict[s[i]] !== undefined) {
+            maxLen = Math.max(maxLen,  i-pos, i - Math.max(pos,dict[s[i]]));
+            pos = Math.max(dict[s[i]] + 1, pos);
+        }
+        dict[s[i]] = i;
+        i++;
+    }
+    return Math.max(maxLen, i - pos);
+};
+
+
+
+
+/**
+ * beat 97.33%
+ * beat 99.59%
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function(s) {
+    let res = 0, start = 0;
+    for (let i = 0; i < s.length; i++) {
+        const index = s.indexOf(s[i], start);
+        if (index > -1 && index < i) {
+            start = index + 1;
+        }
+        res = Math.max(res, index - start + 1);
+    }
+    return res;
+};
