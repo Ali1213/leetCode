@@ -51,3 +51,19 @@ FROM (
  ON 
  a.ManagerId = b.Id  WHERE a.Salary > b.Salary
  `
+
+/** 
+ * Runtime: 317 ms, faster than 32.04% of MySQL online submissions for Employees Earning More Than Their Managers.
+ * Memory Usage: N/A
+ */
+ `
+ SELECT 
+    a.Name AS Employee
+FROM
+    Employee AS a,
+    Employee As b
+WHERE
+    a.ManagerId = b.Id
+    AND
+    a.Salary > b.Salary
+ `
