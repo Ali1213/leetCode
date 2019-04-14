@@ -39,3 +39,19 @@ GROUP BY
 WHERE count > 1
 
 `
+
+/** 
+ * Runtime: 188 ms, faster than 80.07% of MySQL online submissions for Duplicate Emails.
+ * Memory Usage: N/A
+ * 用having 字句可以简化代码
+ */
+`
+SELECT 
+    Email
+From
+    Person
+GROUP BY
+    Email
+HAVING
+    COUNT(Email) > 1
+`
