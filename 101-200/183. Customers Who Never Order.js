@@ -46,3 +46,19 @@ WHERE Id not in (
         Orders
 )
 `
+
+/* 
+ * Runtime: 269 ms, faster than 43.18% of MySQL online submissions for Customers Who Never Order.
+ */
+
+`
+SELECT
+    Customers.Name AS Customers
+FROM
+    Customers
+LEFT JOIN
+    Orders
+ON
+    Orders.CustomerId = Customers.Id
+WHERE Orders.CustomerId IS NULL
+`
