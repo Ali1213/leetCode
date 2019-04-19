@@ -65,3 +65,32 @@ var commonChars = function (A) {
     }
     return r;
 };
+
+
+
+/**
+ * Runtime: 72 ms, faster than 81.05% of JavaScript online submissions for Find Common Characters.
+ * Memory Usage: 37.9 MB, less than 100.00% of JavaScript online submissions for Find Common Characters.
+ * @param {string[]} A
+ * @return {string[]}
+ */
+var commonChars = function (A) {
+    let r = [];
+
+    for (let j = 0; j < A[0].length; j++) {
+        r.push(A[0][j])
+    }
+
+    for (let i = 1; i < A.length; i++) {
+        let p = []
+
+        for (let j = 0; j < A[i].length; j++) {
+            let index = r.indexOf(A[i][j])
+            if (index !== -1) {
+                p.push(...r.splice(index, 1))
+            }
+        }
+        r = p;
+    }
+    return r;
+};
