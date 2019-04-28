@@ -25,10 +25,23 @@ After running your update statement, the above salary table should have the foll
 /** 
  * Runtime: 167 ms, faster than 42.98% of MySQL online submissions for Swap Salary.
  * Memory Usage: N/A
+ * 测试发现, 这个编译的时间是不固定的
  */
 `
 UPDATE
 salary
 SET
 sex = CASE WHEN sex = 'f' THEN 'm' WHEN sex = 'm' THEN 'f' END
+`
+
+`
+UPDATE
+salary
+SET
+sex = CASE sex WHEN  'f' THEN 'm' ELSE 'f' END
+`
+
+`
+UPDATE salary
+SET sex = if(sex = 'm', 'f', 'm')
 `
