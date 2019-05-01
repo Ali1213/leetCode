@@ -49,3 +49,15 @@ FROM
     seat, (SELECT count(1) as count FROM seat) as d
 ORDER BY id ASC
 `
+
+/** 
+ * 使用了coalescre函数
+ * 使用了按位的算法
+ */
+`
+SELECT
+    coalesce(b.id,a.id) as id, a.student as student
+FROM seat as a
+LEFT JOIN seat as b 
+ON ((a.id + 1) ^ 1 - 1) = b.id
+`
