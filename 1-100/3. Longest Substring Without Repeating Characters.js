@@ -76,7 +76,7 @@ var lengthOfLongestSubstring = function (s) {
     let i = 0;
     while (i < s.length) {
         if (dict[s[i]] !== undefined) {
-            maxLen = Math.max(maxLen,  i-pos, i - Math.max(pos,dict[s[i]]));
+            maxLen = Math.max(maxLen, i - pos, i - Math.max(pos, dict[s[i]]));
             pos = Math.max(dict[s[i]] + 1, pos);
         }
         dict[s[i]] = i;
@@ -94,7 +94,7 @@ var lengthOfLongestSubstring = function (s) {
  * @param {string} s
  * @return {number}
  */
-var lengthOfLongestSubstring = function(s) {
+var lengthOfLongestSubstring = function (s) {
     let res = 0, start = 0;
     for (let i = 0; i < s.length; i++) {
         const index = s.indexOf(s[i], start);
@@ -104,4 +104,33 @@ var lengthOfLongestSubstring = function(s) {
         res = Math.max(res, index - start + 1);
     }
     return res;
+};
+
+
+
+
+/**
+ * 87.67%
+ * 80.41% 
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function (s) {
+
+    let lastIndex = new Map()
+    let start = 0
+    let maxLen = 0
+
+    for (let i = 0; i < s.length; i++) {
+        if (lastIndex.has(s[i]) && lastIndex.get(s[i]) >= start) {
+            start = lastIndex.get(s[i]) + 1
+        }
+
+        if (maxLen < i - start + 1) {
+            maxLen = i - start + 1
+        }
+
+        lastIndex.set(s[i], i)
+    }
+    return maxLen
 };
