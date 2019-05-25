@@ -79,3 +79,34 @@ var numPairsDivisibleBy60 = function (time) {
 
     return count
 };
+
+`
+func numPairsDivisibleBy60(time[]int) int {
+    store:= make(map[int]int)
+    count:= 0
+    for _, v := range time {
+        s:= v % 60
+
+        if s == 0 {
+            n, ok := store[s]
+            if ok {
+                count += n
+            }
+        } else {
+            n, ok := store[60 - s]
+            if ok {
+                count += n
+            }
+        }
+
+        n, ok := store[s]
+        if ok {
+            store[s] = n + 1
+        } else {
+            store[s] = 1
+        }
+
+    }
+    return count
+}
+`
