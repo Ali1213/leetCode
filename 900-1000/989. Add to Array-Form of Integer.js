@@ -66,3 +66,24 @@ console.log(addToArrayForm([1, 2, 0, 0], 34))
 console.log(addToArrayForm([2, 7, 4], 181))
 console.log(addToArrayForm([2, 1, 5], 806))
 console.log(addToArrayForm([9, 9, 9, 9, 9, 9, 9, 9, 9, 9], 1))
+
+
+var addToArrayForm = function (A, K) {
+    var reverseA = A.reverse()
+    let i = 0
+    while (K > 0) {
+        const v = K % 10;
+        K = (K - v) / 10
+        if (reverseA[i] === undefined) {
+            reverseA[i] = 0
+        }
+
+        reverseA[i] = reverseA[i] + v;
+        if (reverseA[i] > 9) {
+            K += 1
+            reverseA[i] = reverseA[i] - 10
+        }
+        i++;
+    }
+    return reverseA.reverse()
+};
