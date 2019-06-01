@@ -74,3 +74,90 @@ var pancakeSort = function (A) {
 
 console.log(pancakeSort([3, 2, 4, 1]))
 // console.log(pancakeSort([1,2,3]))
+
+
+var pancakeSort = function (A) {
+    let methods = [];
+
+    var reverse = (pos) => {
+        let p = pos / 2;
+        for (let i = 0; i < p; i++) {
+            let temp = A[i];
+            A[i] = A[pos - i];
+            A[pos - i] = temp;
+        }
+
+    }
+
+
+    for (let max = A.length; max > 0; max -= 1) {
+        let i = 0;
+        while (A[i] !== max && i < max) {
+            i += 1;
+        }
+
+        if(i === max - 1){
+
+        } else if ( i === 0){
+            methods.push(max);
+            reverse(max - 1);
+
+        } else {
+            methods.push(i + 1);
+            reverse(i);
+            methods.push(max);
+            reverse(max - 1);
+        }
+    }
+
+    return methods;
+
+};
+
+
+console.log(pancakeSort([3, 2, 4, 1]))
+
+
+/**
+ *
+ * Runtime: 60 ms, faster than 100.00% of JavaScript online submissions for Pancake Sorting.
+ * Memory Usage: 35.1 MB, less than 76.60% of JavaScript online submissions for Pancake Sorting.
+ */
+
+var pancakeSort = function (A) {
+    let methods = [];
+
+    var reverse = (pos) => {
+        let p = pos / 2;
+        for (let i = 0; i < p; i++) {
+            let temp = A[i];
+            A[i] = A[pos - i];
+            A[pos - i] = temp;
+        }
+
+    }
+
+
+    for (let max = A.length; max > 0; max -= 1) {
+        let i = 0;
+        while (A[i] !== max && i < max) {
+            i += 1;
+        }
+
+        if(i === max - 1){
+
+        } else if ( i === 0){
+            methods.push(max);
+            reverse(max - 1);
+
+        } else {
+            methods.push(i + 1);
+            reverse(i);
+            methods.push(max);
+            reverse(max - 1);
+        }
+    }
+
+    return methods;
+
+};
