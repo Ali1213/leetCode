@@ -53,3 +53,36 @@ var maxSatisfied = function (customers, grumpy, X) {
     }
     return max
 };
+
+
+
+
+
+/**
+ * 改进思路: 直接对原数组操作，减少大量的判断
+ * Runtime: 56 ms, faster than 97.81% of JavaScript online submissions for Grumpy Bookstore Owner.
+ * Memory Usage: 37.1 MB, less than 100.00% of JavaScript online submissions for Grumpy Bookstore Owner.
+ * @param {number[]} customers
+ * @param {number[]} grumpy
+ * @param {number} X
+ * @return {number}
+ */
+
+var maxSatisfied = function (customers, grumpy, X) {
+    let count = 0, max = 0;
+    for (let i = 0; i < customers.length; i++) {
+        if (grumpy[i] === 0) {
+            count += customers[i]
+            customers[i] = 0
+        }
+    }
+
+    for (let i = 0; i < customers.length; i++) {
+        count += customers[i]
+        if (i - X >= 0) {
+            count -= customers[i - X]
+        }
+        max = Math.max(max, count)
+    }
+    return max
+};
