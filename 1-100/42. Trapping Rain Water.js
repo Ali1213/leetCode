@@ -68,3 +68,50 @@ var test = [
 test.forEach(([A, r]) => {
     assert.deepEqual(trap(A), r)
 })
+
+
+
+/**
+ *
+ * Runtime: 60 ms, faster than 88.48% of JavaScript online submissions for Trapping Rain Water.
+ * Memory Usage: 35.1 MB, less than 70.12% of JavaScript online submissions for Trapping Rain Water.
+ * @param {number[]} height
+ * @return {number}
+ */
+var trap = function (height) {
+    var start = 0, end = height.length - 1;
+    var store = 0;
+    var lMax = 0, rMax = 0;
+    while (start < end) {
+        if (height[start] < height[end]) {
+            if (height[start] >= lMax) {
+                lMax = height[start]
+            } else {
+               store += lMax - height[start]
+            }
+            start += 1;
+        } else {
+            if(height[end] >= rMax){
+                rMax = height[end]
+            } else {
+                store += rMax - height[end]
+            }
+            end -= 1;
+        }
+    }
+    return store;
+};
+
+
+
+
+var test = [
+    [[0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1], 6],
+    [[5, 1, 2], 1],
+    [[5, 1, 2, 1, 5], 11],
+]
+
+
+test.forEach(([A, r]) => {
+    assert.deepEqual(trap(A), r)
+})
