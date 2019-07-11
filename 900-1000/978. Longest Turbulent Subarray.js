@@ -83,3 +83,49 @@ test.forEach(([A, r]) => {
     assert.deepEqual(maxTurbulenceSize(A), r)
 })
 
+
+
+
+/**
+ * 略微做一些优化，省略一些变量
+ * Runtime: 80 ms, faster than 62.92% of JavaScript online submissions for Longest Turbulent Subarray.
+ * Memory Usage: 41.7 MB, less than 84.38% of JavaScript online submissions for Longest Turbulent Subarray.
+ * @param {number[]} A
+ * @return {number}
+ */
+var maxTurbulenceSize = function (A) {
+    let maxCount = 1;
+    let inc = 1, dec = 1;
+    for (let i = 1; i < A.length; i++) {
+        if (A[i] > A[i - 1]) {
+            inc = dec + 1;
+            dec = 1;
+
+        } else if(A[i] < A[i - 1]) {
+            dec = inc + 1;
+            inc = 1;
+        } else {
+            inc = 1;
+            dec = 1;
+        }
+        maxCount = Math.max(inc, maxCount, dec)
+
+    }
+    return maxCount
+};
+
+
+
+
+var test = [
+    [[9, 4, 2, 10, 7, 8, 8, 1, 9], 5],
+    [[4, 8, 12, 16], 2],
+    [[100], 1],
+]
+
+
+test.forEach(([A, r]) => {
+    console.log(r)
+    assert.deepEqual(maxTurbulenceSize(A), r)
+})
+
