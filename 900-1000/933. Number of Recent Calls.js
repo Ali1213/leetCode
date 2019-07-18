@@ -70,3 +70,27 @@ test.forEach(([A, B, r], index) => {
         console.log(e)
     }
 })
+
+
+
+var RecentCounter = function() {
+    this.queue = []
+};
+
+/** 
+ * Runtime: 248 ms, faster than 97.31% of JavaScript online submissions for Number of Recent Calls.
+ * Memory Usage: 56.8 MB, less than 96.92% of JavaScript online submissions for Number of Recent Calls.
+ * @param {number} t
+ * @return {number}
+ */
+RecentCounter.prototype.ping = function(t) {
+    this.queue.push(t);
+    while(this.queue.length > 0 && this.queue[0] < t - 3000) this.queue.shift()
+    return this.queue.length
+};
+
+/** 
+ * Your RecentCounter object will be instantiated and called as such:
+ * var obj = new RecentCounter()
+ * var param_1 = obj.ping(t)
+ */
