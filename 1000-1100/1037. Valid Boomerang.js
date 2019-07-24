@@ -70,3 +70,25 @@ test.forEach(([A, r], index) => {
         throw e
     }
 })
+
+
+
+/**
+ * Runtime: 52 ms, faster than 93.45% of JavaScript online submissions for Valid Boomerang.
+ * Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions for Valid Boomerang.
+ * @param {number[][]} points
+ * @return {boolean}
+ */
+var isBoomerang = function (points) {
+
+    const [
+        [x0, y0],
+        [x1, y1],
+        [x2, y2]
+    ] = points;
+    
+    if (x0 === x1 && y0 === y1 || x0 === x2 && y0 === y2 || x1 === x2 && y1 === y2)
+        return false;
+    
+    return (y1 - y0) / (x1 - x0) !== (y2 - y0) / (x2 - x0);
+};
