@@ -22,13 +22,15 @@ Note:
 
 
 /**
+ * 方法1: 用了Map去做数据记录，
+ * 然后两层循环
  * Runtime: 84 ms, faster than 63.73% of JavaScript online submissions for Subarray Sums Divisible by K.
  * Memory Usage: 39.8 MB, less than 42.86% of JavaScript online submissions for Subarray Sums Divisible by K.
  * @param {number[]} A
  * @param {number} K
  * @return {number}
  */
-var subarraysDivByK = function (A, K) {
+var subarraysDivByK1 = function (A, K) {
     let count = 0;
     let map = new Map();
     let a = new Array(A.length + 1);
@@ -55,6 +57,34 @@ var subarraysDivByK = function (A, K) {
         map.set(a[i + 1], map.get(a[i + 1]) - 1);
     }
     return count
+};
+
+
+
+
+/**
+ * Runtime: 76 ms, faster than 88.24% of JavaScript online submissions for Subarray Sums Divisible by K.
+ * Memory Usage: 39.5 MB, less than 57.14% of JavaScript online submissions for Subarray Sums Divisible by K.
+ * @param {number[]} A
+ * @param {number} K
+ * @return {number}
+ */
+var subarraysDivByK = function (A, K) {
+    let count = 0;
+    let map = new Map();
+    let sum = 0;
+    map.set(0, 1);
+    for (let i = 0; i < A.length; i++) {
+        sum = (sum + A[i]) % K;
+        if (sum < 0) sum += K;
+        let value = map.get(sum);
+        if (value) {
+            count += value;
+            map.set(sum, value + 1);
+        } else map.set(sum, 1);
+    };
+    return count;
+
 };
 
 
