@@ -16,9 +16,43 @@ Explanation:
 
 
 /**
+ * Runtime: 56 ms, faster than 93.92% of JavaScript online submissions for Happy Number.
+ * Memory Usage: 34.9 MB, less than 71.79% of JavaScript online submissions for Happy Number.
  * @param {number} n
  * @return {boolean}
  */
-var isHappy = function(n) {
+var isHappy = function (n) {
+    let s = new Set();
+    let v = n;
+    while (v !== 1) {
+        if (s.has(v)) return false;
+        s.add(v);
 
+        let count = 0;
+        while (v !== 0) {
+            let now = v % 10;
+            v = (v - now) / 10;
+            count += Math.pow(now, 2);
+        }
+        v = count;
+    }
+    return true;
 };
+
+
+const assert = require('assert');
+var test = [
+    [19, true],
+];
+
+
+test.forEach(([A, r], index) => {
+    try {
+
+        assert.deepEqual(isHappy(A), r)
+    } catch (e) {
+        console.log(`${index} occur error`);
+        console.log(e)
+        throw e;
+    }
+});
