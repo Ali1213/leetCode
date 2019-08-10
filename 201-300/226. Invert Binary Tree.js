@@ -49,3 +49,14 @@ var invertTree = function(root) {
     invertTree(root.right);
     return root;
 };
+
+
+
+var invertTree = function(root) {
+
+    if(root === null) return root;
+    let result = new TreeNode(root.val);
+    result.right = invertTree(root.left);
+    result.left = invertTree(root.right);
+    return result;
+};
