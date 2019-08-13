@@ -36,8 +36,8 @@ p and q are different and both values will exist in the BST.
  * }
  */
 /**
- * Runtime: 84 ms, faster than 39.71% of JavaScript online submissions for Lowest Common Ancestor of a Binary Search Tree.
- * Memory Usage: 43.8 MB, less than 60.00% of JavaScript online submissions for Lowest Common Ancestor of a Binary Search Tree.
+ * Runtime: 76 ms, faster than 78.46% of JavaScript online submissions for Lowest Common Ancestor of a Binary Search Tree.
+ * Memory Usage: 43.7 MB, less than 100.00% of JavaScript online submissions for Lowest Common Ancestor of a Binary Search Tree.
  * @param {TreeNode} root
  * @param {TreeNode} p
  * @param {TreeNode} q
@@ -59,15 +59,7 @@ var lowestCommonAncestor = function (root, p, q) {
     let qA = findInTree(root, q, [])
     let pA = findInTree(root, p, [])
 
-    if (qA.length > pA.length) {
-        qA.length = pA.length;
-    }
-
-    if (qA.length < pA.length) {
-        pA.length = qA.length;
-    }
-
-    let i = qA.length - 1;
+    let i = qA.length > pA.length ? pA.length - 1 : qA.length - 1;
     while(i >= 0){
         if(qA[i].val === pA[i].val) return pA[i];
         i--;
