@@ -23,7 +23,44 @@ Then 4 is the first bad version.
  * @param {function} isBadVersion()
  * @return {function}
  */
+//
+// var solution = function (isBadVersion) {
+//     /**
+//      * @param {integer} n Total versions
+//      * @return {integer} The first bad version
+//      */
+//     return function (n) {
+//         let start = 1;
+//         let end = n;
+//         while (start < end) {
+//             let i = ((end + start) / 2) >> 0;
+//             if (isBadVersion(i) !== isBadVersion(i - 1)) return i;
+//             if (isBadVersion(i)) {
+//                 end = i;
+//             } else {
+//                 if(start === i) start = i + 1;
+//                 else start = i;
+//             }
+//         }
+//         return end;
+//
+//     };
+// };
 
+
+
+/**
+ * Runtime: 56 ms, faster than 39.18% of JavaScript online submissions for First Bad Version.
+ * Memory Usage: 33.8 MB, less than 15.38% of JavaScript online submissions for First Bad Version.
+ * @param {function} isBadVersion()
+ * @return {function}
+ */
+
+/*
+*
+* Runtime: 52 ms, faster than 66.60% of JavaScript online submissions for First Bad Version.
+* Memory Usage: 33.8 MB, less than 61.54% of JavaScript online submissions for First Bad Version.
+* */
 var solution = function (isBadVersion) {
     /**
      * @param {integer} n Total versions
@@ -34,12 +71,12 @@ var solution = function (isBadVersion) {
         let end = n;
         while (start < end) {
             let i = ((end + start) / 2) >> 0;
-            if (isBadVersion(i) !== isBadVersion(i - 1)) return i;
             if (isBadVersion(i)) {
                 end = i;
+            } else if(start ===i){
+                start = i + 1
             } else {
-                if(start === i) start = i + 1;
-                else start = i;
+                start = i;
             }
         }
         return end;
