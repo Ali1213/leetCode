@@ -8,4 +8,9 @@ globals:
   SharedArrayBuffer: readonly
 parserOptions:
   ecmaVersion: 2018
-rules: {}
+rules:
+  max-len:
+    - off
+  indent:
+    - error
+    - 4
