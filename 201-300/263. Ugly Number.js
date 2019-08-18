@@ -1,3 +1,4 @@
+
 /*
 Write a program to check whether a given number is an ugly number.
 
@@ -31,44 +32,44 @@ Note:
  * @param {number} num
  * @return {boolean}
  */
-var isUgly = function (num) {
-    if (num <= 0) return false;
-    let n = num
+const isUgly = function (num) {
+  if (num <= 0) return false;
+  let n = num;
 
-    while (true) {
-        if( n === 1) return true
+  while (true) {
+    if (n === 1) return true;
 
-        if (n % 2 === 0) {
-            n = n / 2
-        } else if (n % 3 === 0) {
-            n = n / 3
-        } else if (n % 5 === 0) {
-            n = n / 5
-        } else {
-            return false
-        }
+    if (n % 2 === 0) {
+      n /= 2;
+    } else if (n % 3 === 0) {
+      n /= 3;
+    } else if (n % 5 === 0) {
+      n /= 5;
+    } else {
+      return false;
     }
+  }
 };
 
 
 const assert = require('assert');
-var test = [
-    [6, true],
-    [8, true],
-    [14, false],
-    [-6, false],
-    [1, true],
-    [0, false],
+
+const test = [
+  [6, true],
+  [8, true],
+  [14, false],
+  [-6, false],
+  [1, true],
+  [0, false],
 ];
 
 
 test.forEach(([A, r], index) => {
-    try {
-
-        assert.deepEqual(isUgly(A), r)
-    } catch (e) {
-        console.log(`${index} occur error`);
-        console.log(e)
-        throw e;
-    }
+  try {
+    assert.deepEqual(isUgly(A), r);
+  } catch (e) {
+    console.log(`${index} occur error`);
+    console.log(e);
+    throw e;
+  }
 });
