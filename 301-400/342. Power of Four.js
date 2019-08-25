@@ -18,14 +18,14 @@ Follow up: Could you solve it without loops/recursion?
  * @param {number} num
  * @return {boolean}
  */
-var isPowerOfFour = function(num) {
-    return num > 0 && 4294967296 % 4 === 0 && Math.log2(num) % 2 === 0
+const isPowerOfFour = function (num) {
+    return num > 0 && 4294967296 % 4 === 0 && Math.log2(num) % 2 === 0;
 };
 
 
-
 const assert = require('assert');
-var test = [
+
+const test = [
     [8, false],
     [16, true],
     [5, false],
@@ -34,11 +34,10 @@ var test = [
 
 test.forEach(([A, r], index) => {
     try {
-
-        assert.deepEqual(isPowerOfFour(A), r)
+        assert.deepEqual(isPowerOfFour(A), r);
     } catch (e) {
         console.log(`${index} occur error`);
-        console.log(e)
+        console.log(e);
         throw e;
     }
 });
