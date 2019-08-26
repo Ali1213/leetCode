@@ -38,12 +38,13 @@ Follow up:
  * Memory Usage: 48.3 MB, less than 20.00% of JavaScript online submissions for Power of Three.* @param {number} n
  * @return {boolean}
  */
-var isPowerOfThree = function(n) {
-    return n > 0 && 1162261467 % n === 0
+const isPowerOfThree = function (n) {
+    return n > 0 && 1162261467 % n === 0;
 };
 
 const assert = require('assert');
-var test = [
+
+const test = [
     [27, true],
     [0, false],
     [9, true],
@@ -53,11 +54,10 @@ var test = [
 
 test.forEach(([A, r], index) => {
     try {
-
-        assert.deepEqual(isPowerOfThree(A), r)
+        assert.deepEqual(isPowerOfThree(A), r);
     } catch (e) {
         console.log(`${index} occur error`);
-        console.log(e)
+        console.log(e);
         throw e;
     }
 });
