@@ -14,8 +14,8 @@ Output: false
 */
 
 /**
- * Runtime: 60 ms, faster than 39.01% of JavaScript online submissions for Valid Perfect Square.
- * Memory Usage: 35.3 MB, less than 25.00% of JavaScript online submissions for Valid Perfect Square.
+ * Runtime: 52 ms, faster than 79.03% of JavaScript online submissions for Valid Perfect Square.
+ * Memory Usage: 34 MB, less than 50.00% of JavaScript online submissions for Valid Perfect Square.
  * @param {number} num
  * @return {boolean}
  */
