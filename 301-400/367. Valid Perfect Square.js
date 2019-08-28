@@ -31,12 +31,10 @@ const isPerfectSquare = function (num) {
         if (m === num) return true;
         if (m > num) {
             end = mid;
-        } else if (mid === start) {
-            start += 1;
         } else {
-            start = mid;
+            start = mid === start ? start + 1 : mid;
         }
-        console.log(start, end);
+        // console.log(start, end);
     }
     return start * start === num;
 };
