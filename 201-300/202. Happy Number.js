@@ -21,8 +21,8 @@ Explanation:
  * @param {number} n
  * @return {boolean}
  */
-var isHappy = function (n) {
-    let s = new Set();
+const isHappy = function (n) {
+    const s = new Set();
     let v = n;
     while (v !== 1) {
         if (s.has(v)) return false;
@@ -30,7 +30,7 @@ var isHappy = function (n) {
 
         let count = 0;
         while (v !== 0) {
-            let now = v % 10;
+            const now = v % 10;
             v = (v - now) / 10;
             count += Math.pow(now, 2);
         }
@@ -41,18 +41,18 @@ var isHappy = function (n) {
 
 
 const assert = require('assert');
-var test = [
+
+const test = [
     [19, true],
 ];
 
 
 test.forEach(([A, r], index) => {
     try {
-
-        assert.deepEqual(isHappy(A), r)
+        assert.deepEqual(isHappy(A), r);
     } catch (e) {
         console.log(`${index} occur error`);
-        console.log(e)
+        console.log(e);
         throw e;
     }
 });
