@@ -29,7 +29,8 @@ Output:
  * @param {number} num
  * @return {string}
  */
-const toHex = function (num) {
+const toHex1 = function (num) {
+    if (num === 0) return '0';
     const index = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
     let n = num;
     let r = '';
@@ -46,6 +47,23 @@ const toHex = function (num) {
     return r;
 };
 
+
+/*
+* Runtime: 56 ms, faster than 53.66% of JavaScript online submissions for Convert a Number to Hexadecimal.
+Memory Usage: 33.9 MB, less than 100.00% of JavaScript online submissions for Convert a Number to Hexadecimal.
+* */
+const toHex = function (num) {
+    if (num === 0) return '0';
+    const index = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+    let r = '';
+
+
+    while (num !== 0) {
+        r = index[num & 15] + r;
+        num = (num >>> 4);
+    }
+    return r;
+};
 
 const assert = require('assert');
 
