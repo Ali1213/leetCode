@@ -23,7 +23,7 @@ Explanation:
  * @param {string} s
  * @return {number}
  */
-const longestPalindrome = function (s) {
+const longestPalindrome1 = function (s) {
     const arr = new Array(52);
     for (let i = 0; i < s.length; i++) {
         const code = s.charCodeAt(i) - 65;
@@ -43,11 +43,36 @@ const longestPalindrome = function (s) {
 };
 
 
+/*
+* Runtime: 56 ms, faster than 90.14% of JavaScript online submissions for Longest Palindrome.
+* Memory Usage: 35 MB, less than 100.00% of JavaScript online submissions for Longest Palindrome.
+* */
+const longestPalindrome = function (s) {
+    const arr = new Array(52);
+    for (let i = 0; i < s.length; i++) {
+        const code = s.charCodeAt(i) - 65;
+        if (arr[code] === undefined) {
+            arr[code] = 1;
+        } else arr[code] += 1;
+    }
+    let code = 0;
+    let hasLone = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] !== undefined) {
+            const v = (arr[i] >> 1) << 1;
+            if (arr[i] - v === 1) hasLone = 1;
+            code += v;
+        }
+    }
+    return code + hasLone;
+};
+
 const assert = require('assert');
+
 const test = [
     ['Aabccccdd', 7],
-    ["a", 1],
-    ["AB", 1],
+    ['a', 1],
+    ['AB', 1],
 ];
 
 
