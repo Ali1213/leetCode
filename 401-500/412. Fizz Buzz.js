@@ -33,7 +33,7 @@ Example:
  * @param {number} n
  * @return {string[]}
  */
-const fizzBuzz = function (n) {
+const fizzBuzz1 = function (n) {
     let i = 1;
     const r = new Array(n - 1);
 
@@ -49,6 +49,37 @@ const fizzBuzz = function (n) {
         } else {
             r[i - 1] = String(i);
         }
+        i++;
+    }
+    return r;
+};
+
+/*
+* Runtime: 56 ms, faster than 93.34% of JavaScript online submissions for Fizz Buzz.
+* Memory Usage: 37.4 MB, less than 45.00% of JavaScript online submissions for Fizz Buzz.
+* */
+const fizzBuzz = function (n) {
+    let i = 1;
+    const r = new Array(n - 1);
+    let buzz = 1;
+    let fizz = 1;
+    while (i <= n) {
+        if (buzz === 5 && fizz === 3) {
+
+            r[i - 1] = 'FizzBuzz';
+            buzz = 0;
+            fizz = 0;
+        } else if (buzz === 5) {
+            r[i - 1] = 'Buzz';
+            buzz = 0;
+        } else if( fizz === 3) {
+            r[i - 1] = 'Fizz';
+            fizz = 0;
+        } else {
+            r[i - 1] = String(i);
+        }
+        buzz ++;
+        fizz ++;
         i++;
     }
     return r;
