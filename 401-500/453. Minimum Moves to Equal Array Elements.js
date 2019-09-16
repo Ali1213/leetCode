@@ -22,7 +22,7 @@ Explanation:
  * @param {number[]} nums
  * @return {number}
  */
-const minMoves = function (nums) {
+const minMoves2 = function (nums) {
     let min = Number.MAX_SAFE_INTEGER;
     for (let i = 0; i < nums.length; i++) {
         if (nums[i] < min) min = nums[i];
@@ -32,6 +32,25 @@ const minMoves = function (nums) {
         result += nums[i] - min;
     }
     return result;
+};
+
+
+
+/**
+ * Runtime: 72 ms, faster than 40.65% of JavaScript online submissions for Minimum Moves to Equal Array Elements.
+ * Memory Usage: 37.5 MB, less than 100.00% of JavaScript online submissions for Minimum Moves to Equal Array Elements.
+ * @param {number[]} nums
+ * @return {number}
+ */
+const minMoves = function (nums) {
+    let min = Number.MAX_SAFE_INTEGER;
+    let result = 0;
+    for (let i = 0; i < nums.length; i++) {
+        result += nums[i];
+        if (nums[i] < min) min = nums[i];
+    }
+
+    return result - min * nums.length;
 };
 
 
