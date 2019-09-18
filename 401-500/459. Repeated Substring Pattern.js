@@ -24,7 +24,7 @@ Explanation: It's the substring "abc" four times. (And the substring "abcabc" tw
  * @param {string} s
  * @return {boolean}
  */
-const repeatedSubstringPattern = function (s) {
+const repeatedSubstringPattern1 = function (s) {
     const len = s.length;
     if (len < 2) return false;
     let start = 1;
@@ -33,6 +33,26 @@ const repeatedSubstringPattern = function (s) {
             if (s === s.substring(0, start).repeat(len / start)) return true;
         }
         start += 1;
+    }
+    return false;
+};
+
+
+/**
+ * Runtime: 68 ms, faster than 78.33% of JavaScript online submissions for Repeated Substring Pattern.
+ * Memory Usage: 38.1 MB, less than 33.33% of JavaScript online submissions for Repeated Substring Pattern.
+ * @param {string} s
+ * @return {boolean}
+ */
+const repeatedSubstringPattern = function (s) {
+    const len = s.length;
+    for (let i = 1; i <= len / 2; i++) {
+        if (len % i === 0) {
+            let str = s.substring(0, i);
+            str = s.substring(i) + str;
+
+            if (str === s) return true;
+        }
     }
     return false;
 };
