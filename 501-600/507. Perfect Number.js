@@ -15,7 +15,7 @@ Note: The input number n will not exceed 100,000,000. (1e8)
  * @param {number} num
  * @return {boolean}
  */
-const checkPerfectNumber = (num) => {
+const checkPerfectNumber1 = (num) => {
     let total = 1;
 
     let i = Math.floor(num / 2);
@@ -28,6 +28,28 @@ const checkPerfectNumber = (num) => {
     }
     return num === total && num !== 1;
 };
+
+/**
+ * Runtime: 52 ms, faster than 95.40% of JavaScript online submissions for Perfect Number.
+ * Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions for Perfect Number.
+ */
+const checkPerfectNumber2 = (num) => [6, 28, 496, 8128, 33550336].includes(num);
+
+/**
+ * Runtime: 48 ms, faster than 98.79% of JavaScript online submissions for Perfect Number.
+ * Memory Usage: 33.9 MB, less than 100.00% of JavaScript online submissions for Perfect Number.
+ */
+const checkPerfectNumber = (num) => {
+    const s = [2, 3, 5, 7, 13, 17, 19, 31];
+
+    for (let i = 0; i < s.length; i += 1) {
+        if ((1 << (s[i] - 1)) * ((1 << s[i]) - 1) === num) {
+            return true;
+        }
+    }
+    return false;
+};
+
 
 const assert = require('assert');
 
