@@ -29,7 +29,7 @@ Note: The input will be a non-empty word consisting of uppercase and lowercase l
  * @param {string} word
  * @return {boolean}
  */
-const detectCapitalUse = (word) => {
+const detectCapitalUse1 = (word) => {
     // if (word.length === 0) return false;
     if (word.length < 2) return true;
     const first = word.charCodeAt(0) < 97;
@@ -40,6 +40,22 @@ const detectCapitalUse = (word) => {
         if (v !== others) return false;
     }
     return !(!first && others);
+};
+
+/*
+ * Runtime: 60 ms, faster than 73.81% of JavaScript online submissions for Detect Capital.
+ * Memory Usage: 34.2 MB, less than 100.00% of JavaScript online submissions for Detect Capital.
+ */
+const detectCapitalUse = (word) => {
+    // if (word.length === 0) return false;
+    if (word.length < 2) return true;
+    // const first = word[0] < 'a';
+    const others = word[1] < 'a';
+
+    for (let i = 2; i < word.length; i += 1) {
+        if (word[i] < 'a' !== others) return false;
+    }
+    return !(word[0] >= 'a' && others);
 };
 
 
