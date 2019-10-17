@@ -33,7 +33,7 @@ The minimum absolute difference is 1, which is the difference between 2 and 1 (o
  * @return {number}
  */
 
-const getMinimumDifference = (root) => {
+const getMinimumDifference1 = (root) => {
     const arr = [];
     const searchTree = (root) => {
         if (root === null) return;
@@ -46,5 +46,23 @@ const getMinimumDifference = (root) => {
     for (let i = 1; i < arr.length; i++) {
         min = Math.min(arr[i] - arr[i - 1], min);
     }
+    return min;
+};
+
+/**
+ * Runtime: 64 ms, faster than 94.19% of JavaScript online submissions for Minimum Absolute Difference in BST.
+ * Memory Usage: 37.7 MB, less than 100.00% of JavaScript online submissions for Minimum Absolute Difference in BST.
+ */
+const getMinimumDifference = (root) => {
+    let lastVal = Number.MIN_SAFE_INTEGER;
+    let min = Number.MAX_SAFE_INTEGER;
+    const searchTree = (root) => {
+        if (root === null) return;
+        searchTree(root.left);
+        min = Math.min(root.val - lastVal, min);
+        lastVal = root.val;
+        searchTree(root.right);
+    };
+    searchTree(root);
     return min;
 };
