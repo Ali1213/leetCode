@@ -27,8 +27,7 @@ const reverse = function (arr, start, end) {
     }
 };
 
-
-const reverseStr = function (s, k) {
+const reverseStr1 = function (s, k) {
     const arr = s.split('');
     let i = 0;
     while (i < s.length) {
@@ -38,6 +37,20 @@ const reverseStr = function (s, k) {
     return arr.join('');
 };
 
+
+/**
+ * Runtime: 56 ms, faster than 91.79% of JavaScript online submissions for Reverse String II.
+ * Memory Usage: 37 MB, less than 100.00% of JavaScript online submissions for Reverse String II.
+ */
+const reverseStr = function (s, k) {
+    const arr = s.split('');
+    let i = 0;
+    while (i < s.length) {
+        reverse(arr, i, Math.min(i + k - 1, s.length - 1));
+        i += (k << 1);
+    }
+    return arr.join('');
+};
 
 const assert = require('assert');
 
