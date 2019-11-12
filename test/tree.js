@@ -1,3 +1,4 @@
+const assert = require('assert');
 
 function TreeNode(val) {
     this.val = val;
@@ -5,8 +6,7 @@ function TreeNode(val) {
     this.right = null;
 }
 
-
-const convertArrayToTree = (arr) => {
+function arrToTree(arr) {
     if (!Array.isArray(arr)) throw Error('args must be an array');
     const n = 0;
     if (arr[n] === undefined) return null;
@@ -26,9 +26,25 @@ const convertArrayToTree = (arr) => {
     }
 
     return root;
-};
+}
+
+function diffTreeTestSingle(args, testfunc) {
+    assert.deepEqual(testfunc(...args.params.map((item) => arrToTree(item))), args.result);
+}
+
+function diffTreeTest(testType, testfunc) {
+    testType.forEach((args, index) => {
+        try {
+            diffTreeTestSingle(args, testfunc);
+        } catch (e) {
+            console.log(`${index} occur error`);
+            console.log(e);
+            throw e;
+        }
+    });
+}
 
 
 module.exports = {
-    convertArrayToTree,
+    diffTreeTest,
 };
