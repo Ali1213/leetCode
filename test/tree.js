@@ -38,7 +38,6 @@ function diffTreeTest(testType, testfunc) {
             diffTreeTestSingle(args, testfunc);
         } catch (e) {
             console.log(`${index} occur error`);
-            console.log(e);
             throw e;
         }
     });
