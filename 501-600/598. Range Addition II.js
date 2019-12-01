@@ -34,7 +34,7 @@ The range of operations size won't exceed 10,000.
 */
 
 /**
- * Runtime: 72 ms, faster than 9.68% of JavaScript online submissions for Range Addition II.
+ * Runtime: 60 ms, faster than 49.46% of JavaScript online submissions for Range Addition II.
  * Memory Usage: 35.4 MB, less than 100.00% of JavaScript online submissions for Range Addition II.
  * @param {number} m
  * @param {number} n
