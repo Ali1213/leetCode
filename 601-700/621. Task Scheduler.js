@@ -18,21 +18,21 @@
  * @param {number} n
  * @return {number}
  */
-var leastInterval = function(tasks, n) {
-    let dict = {}
-    
-    for(let i = 0; i< tasks.length;i++){
-        dict[tasks[i]] = (dict[tasks[i]] || 0 ) + 1
+const leastInterval = function (tasks, n) {
+    const dict = {};
+
+    for (let i = 0; i < tasks.length; i++) {
+        dict[tasks[i]] = (dict[tasks[i]] || 0) + 1;
     }
-    
-    let t = Object.keys(dict)
-    let max = 0; 
-    for(let i = 0; i< t.length;i++){
-        max = Math.max(max, dict[t[i]])
-    } 
-    let total = 0
-    for(let i = 0; i< t.length;i++){
-        if(dict[t[i]] == max) total++
+
+    const t = Object.keys(dict);
+    let max = 0;
+    for (let i = 0; i < t.length; i++) {
+        max = Math.max(max, dict[t[i]]);
     }
-    return Math.max(tasks.length, (max-1)* (n+1) + total)
+    let total = 0;
+    for (let i = 0; i < t.length; i++) {
+        if (dict[t[i]] == max) total++;
+    }
+    return Math.max(tasks.length, (max - 1) * (n + 1) + total);
 };
