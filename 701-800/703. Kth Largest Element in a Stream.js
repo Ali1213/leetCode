@@ -24,9 +24,9 @@ Note:
  * @param {number[]} nums
  */
 const KthLargest = function (k, nums) {
-    this.k = k;
-    this.nums = nums.sort((a, b) => a - b).slice(-k);
-};
+    this.k = k
+    this.nums = nums.sort((a, b) => a - b).slice(-k)
+}
 
 /**
  * @param {number} val
@@ -34,19 +34,19 @@ const KthLargest = function (k, nums) {
  */
 KthLargest.prototype.add = function (val) {
     if (this.nums.length >= this.k && val <= this.nums[0]) {
-        return this.nums[0];
+        return this.nums[0]
     }
     for (let i = 0; i < this.nums.length; i++) {
         if (this.nums[i] >= val) {
-            this.nums.splice(i, 0, val);
-            this.nums = this.nums.slice(-this.k);
-            return this.nums[0];
+            this.nums.splice(i, 0, val)
+            this.nums = this.nums.slice(-this.k)
+            return this.nums[0]
         }
     }
-    this.nums.push(val);
-    this.nums = this.nums.slice(-this.k);
-    return this.nums[0];
-};
+    this.nums.push(val)
+    this.nums = this.nums.slice(-this.k)
+    return this.nums[0]
+}
 
 /**
  * Your KthLargest object will be instantiated and called as such:
