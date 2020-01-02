@@ -33,20 +33,19 @@ const KthLargest = function (k, nums) {
  * @return {number}
  */
 KthLargest.prototype.add = function (val) {
-    if(this.nums.length >= this.k && val <= this.nums[0]){
-        return this.nums[0]
+    if (this.nums.length >= this.k && val <= this.nums[0]) {
+        return this.nums[0];
     }
-    for(let i = 0; i< this.nums.length; i++){
-        if(this.nums[i] >= val) {
-            this.nums.splice(i,0,val)
-            this.nums =  this.nums.slice(-this.k);
-            return this.nums[0]
+    for (let i = 0; i < this.nums.length; i++) {
+        if (this.nums[i] >= val) {
+            this.nums.splice(i, 0, val);
+            this.nums = this.nums.slice(-this.k);
+            return this.nums[0];
         }
     }
     this.nums.push(val);
-    this.nums =  this.nums.slice(-this.k);
-    return this.nums[0]
-
+    this.nums = this.nums.slice(-this.k);
+    return this.nums[0];
 };
 
 /**
