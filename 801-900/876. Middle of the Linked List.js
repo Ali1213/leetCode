@@ -53,3 +53,14 @@ var middleNode = function (head) {
     }
     return mid
 }
+
+
+var middleNode = function (head) {
+    let fast = head
+    let mid = head
+    while (fast !== null && fast.next !== null) {
+        fast = fast.next.next;
+        mid = mid.next;
+    }
+    return mid
+}
