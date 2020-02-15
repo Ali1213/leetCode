@@ -33,7 +33,8 @@ Note:
     1 <= A.length <= 1000
 1 <= A[i].length <= 20
 All A[i] have the same length.
-    All A[i] consist of only lowercase letters.*/
+    All A[i] consist of only lowercase letters.
+*/
 
 /**
  * Runtime: 72 ms, faster than 92.68% of JavaScript online submissions for Groups of Special-Equivalent Strings.
