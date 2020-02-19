@@ -67,7 +67,7 @@ var isLongPressedName = function (name, typed) {
 }
 
 
-const {normalTest} = require('../test/index')
+const {normalTest} = require('../test')
 
 const test = [
     {
