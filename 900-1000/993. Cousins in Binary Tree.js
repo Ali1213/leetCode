@@ -63,6 +63,5 @@ var isCousins = function (root, x, y) {
         search(r.right, dep + 1 , r.val)
     }
     search(root, 0, null)
-
-    return depth[x] === depth[y] && parent[parent[x]] === parent[parent[y]]
+    return depth[x] === depth[y] && parent[x] !== parent[y]
 }
