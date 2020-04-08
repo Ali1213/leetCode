@@ -10,10 +10,14 @@ parserOptions:
   ecmaVersion: 2018
 rules:
   max-len:
-    - off
+    - "off"
   indent:
     - error
     - 4
   semi:
     - error
     - never
+  no-plusplus:
+    - "off"
+  no-use-before-define:
+    - "off"
