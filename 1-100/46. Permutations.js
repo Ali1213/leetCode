@@ -23,29 +23,26 @@ Output:
  * @return {number[][]}
  */
 
-var permute = function(nums) {
+const permute = function (nums) {
     const result = []
-
-
     const go = (cur, rest) => {
-        if (rest.length === 0){
+        if (rest.length === 0) {
             result.push(cur)
             return
         }
-        for(let i = 0; i< rest.length; i++){
-
+        for (let i = 0; i < rest.length; i++) {
             go(
                 [...cur, rest[i]],
-                [...rest.slice(0, i), ...rest.slice(i+1)]
+                [...rest.slice(0, i), ...rest.slice(i + 1)],
             )
         }
     }
     go([], nums)
     return result
-};
+}
 
 
-const {normalTest} = require('../test')
+const { normalTest } = require('../test')
 
 const tests = [
     {
