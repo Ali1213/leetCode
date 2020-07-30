@@ -25,7 +25,26 @@ Output:
  */
 var combine = (n, k) => {
     const result = [];
-    if (k > n.length) return result
+    if (k > n) return result
+
+    function find(s, owned, j) {
+        if (owned.length == k) {
+            result.push(owned)
+            return;
+        }
+        for (let i = j; i <= s; i++) {
+            const now = owned.slice();
+            now.push(i)
+            find(s, now, i + 1)
+        }
+    }
+    find(n, [], 1)
+    return result
+};
+
+var combine2 = (n, k) => {
+    const result = [];
+    if (k > n) return result
 
     find(new Array(n).fill(0).map((item, i) => i + 1), [], 0)
 
