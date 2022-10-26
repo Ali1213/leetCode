@@ -99,3 +99,4 @@ const tests = [
 ]
 
 normalTest(tests, longestCommonSubsequence)
+normalTest(tests, longestCommonSubsequence1)
