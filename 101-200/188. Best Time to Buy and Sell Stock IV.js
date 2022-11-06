@@ -26,12 +26,7 @@
 // Runtime: 78 ms, faster than 93.21% of JavaScript online submissions for Best Time to Buy and Sell Stock IV.
 // Memory Usage: 42.2 MB, less than 88.55% of JavaScript online submissions for Best Time to Buy and Sell Stock IV.
 
-/**
- * @param {number} k
- * @param {number[]} prices
- * @return {number}
- */
-const maxProfit = (k, prices) => {
+const maxProfit1 = (k, prices) => {
     let maxK = k
     if (k > prices.length + prices.length) {
         maxK = prices.length + prices.length
@@ -54,6 +49,45 @@ const maxProfit = (k, prices) => {
     }
     return sold[maxK]
 }
+/**
+ * @param {number} k
+ * @param {number[]} prices
+ * @return {number}
+ */
+const maxProfit2 = (k, prices) => {
+    let maxK = k
+    let pLen = prices.length
+    if (maxK > pLen + pLen) {
+        maxK = pLen + pLen
+    }
+
+    let dp = new Array(pLen)
+
+    for (let i = 0; i < pLen; i++) {
+        dp[i] = new Array(maxK + 1)
+        dp[i][0] = [0, Number.MIN_SAFE_INTEGER]
+    }
+
+    for (let i = 0; i < pLen; i++) {
+        for (let j = maxK; j > 0; j--) {
+            if (i === 0) {
+                dp[i][j] = [0, -prices[i]]
+                continue
+            }
+            if (!dp[i - 1][j]) {
+                dp[i - 1][j] = [0, 0]
+            }
+            if (!dp[i - 1][j - 1]) {
+                dp[i - 1][j - 1] = [0, 0]
+            }
+            dp[i][j] = [
+                Math.max(dp[i - 1][j][0], dp[i - 1][j][1] + prices[i]),
+                Math.max(dp[i - 1][j][1], dp[i - 1][j - 1][0] - prices[i])
+            ]
+        }
+    }
+    return dp[pLen-1][maxK][0]
+}
 
 
 const { normalTest } = require('../test')
@@ -74,4 +108,5 @@ const tests = [
     },
 ]
 
-normalTest(tests, maxProfit)
+normalTest(tests, maxProfit1)
+normalTest(tests, maxProfit2)
