@@ -40,6 +40,24 @@ const reverseList1 = (head) => {
     return now
 }
 
+
+const reverseList2 = (head) => {
+    if (head == null || head.next == null) return head
+
+    let now = head
+
+    let prev = head.next
+    let temp = null
+    while (prev !== null) {
+        now.next = temp
+        temp = now
+        now = prev
+        prev = prev.next
+    }
+    now.next = temp
+    return now
+}
+
 // Runtime: 108 ms, faster than 47.62% of JavaScript online submissions for Reverse Linked List.
 // Memory Usage: 44.8 MB, less than 8.78% of JavaScript online submissions for Reverse Linked List.
 const reverseList = (head) => {
@@ -72,3 +90,4 @@ const tests = [
 
 testListResultList(tests, reverseList)
 testListResultList(tests, reverseList1)
+testListResultList(tests, reverseList2)
