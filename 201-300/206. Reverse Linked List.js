@@ -24,57 +24,70 @@ Follow up:
  * @param {ListNode} head
  * @return {ListNode}
  */
-var reverseList = function (head) {
+const reverseList1 = (head) => {
+    if (head == null) return head
 
-    if(head == null) return head;
-
-    let now = head;
-    let newList = null;
-    let temp = null;
-    while(now.next !== null){
-        temp = now;
-        now = now.next;
-        temp.next = newList;
-        newList = temp;
+    let now = head
+    let newList = null
+    let temp = null
+    while (now.next !== null) {
+        temp = now
+        now = now.next
+        temp.next = newList
+        newList = temp
     }
-    now.next = newList;
-    return now;
-};
-
-const assert = require('assert');
-var test = [
-    [[1, 2, 3, 4, 5], [5, 4, 3, 2, 1]],
-];
-
-
-const convertArrayToListNode = (A) => {
-
-    function ListNode(val) {
-        this.val = val;
-        this.next = null;
-    }
-
-    let root;
-    let a;
-    while (A.length > 0) {
-        let e = A.shift();
-        if (a == undefined) {
-            a = new ListNode(e);
-            root = a;
-        } else {
-            a.next = new ListNode(e);
-            a = a.next;
-        }
-    }
-    return root;
+    now.next = newList
+    return now
 }
 
-test.forEach(([A, r], index) => {
-    try {
-        assert.deepEqual(reverseList(convertArrayToListNode(A)), convertArrayToListNode(r))
-    } catch (e) {
-        console.log(`${index} occur error`);
-        console.log(e)
-        throw e;
+
+const reverseList2 = (head) => {
+    if (head == null || head.next == null) return head
+
+    let now = head
+
+    let prev = head.next
+    let temp = null
+    while (prev !== null) {
+        now.next = temp
+        temp = now
+        now = prev
+        prev = prev.next
     }
-});
+    now.next = temp
+    return now
+}
+
+// Runtime: 108 ms, faster than 47.62% of JavaScript online submissions for Reverse Linked List.
+// Memory Usage: 44.8 MB, less than 8.78% of JavaScript online submissions for Reverse Linked List.
+const reverseList = (head) => {
+    if (head == null || head.next == null) return head
+    const last = reverseList(head.next)
+    // eslint-disable-next-line no-param-reassign
+    head.next.next = head
+    // eslint-disable-next-line no-param-reassign
+    head.next = null
+    return last
+}
+
+
+const { testListResultList } = require('../test')
+
+const tests = [
+    {
+        params: [[1, 2, 3, 4, 5]],
+        result: [5, 4, 3, 2, 1],
+    },
+    {
+        params: [[1, 2]],
+        result: [2, 1],
+    },
+    {
+        params: [[]],
+        result: [],
+    },
+]
+
+testListResultList(tests, reverseList)
+testListResultList(tests, reverseList1)
+testListResultList(tests, reverseList2)
