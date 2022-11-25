@@ -18,7 +18,7 @@ Note:
  * @param {number[]} nums
  * @return {number[]}
  */
-const findErrorNums = function (nums) {
+const findErrorNums1 = function (nums) {
     const s = new Set();
     let total = (1 + nums.length) * nums.length / 2;
     const r = [0, 0];
@@ -30,6 +30,27 @@ const findErrorNums = function (nums) {
         total -= nums[i];
     }
     r[1] = r[0] + total;
+    return r;
+};
+
+
+const findErrorNums2 = function (nums) {
+    const r = [0,0]
+    for (let i = 0; i < nums.length; i++) {
+        const v = Math.abs(nums[i]) - 1
+        if(nums[v] < 0){
+            r[0] = Math.abs(nums[v])
+        }else{
+            nums[v] = - nums[v]
+        }
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] > 0) {
+            r[1] = i + 1
+            return r
+        }
+    }
     return r;
 };
 
@@ -47,4 +68,5 @@ const test = [{
     result: [2, 1],
 }];
 
-normalTest(test, findErrorNums);
+normalTest(test, findErrorNums1);
+normalTest(test, findErrorNums2);
