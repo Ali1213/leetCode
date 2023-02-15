@@ -15,7 +15,14 @@ type TreeNode struct {
 	Left  *TreeNode
 	Right *TreeNode
 }
-
+// Runtime
+// 8 ms
+// Beats
+// 55.77%
+// Memory
+// 5.4 MB
+// Beats
+// 28.85%
 func findBottomLeftValue(root *TreeNode) int {
 	queue := []*TreeNode{root}
 	var sum int
