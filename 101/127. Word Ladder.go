@@ -1,3 +1,5 @@
+package main
+
 /* Given two words (beginWord and endWord), and a dictionary's word list, find the length of shortest transformation sequence from beginWord to endWord, such that:
 
 Only one letter can be changed at a time.
@@ -29,7 +31,7 @@ wordList = ["hot","dot","dog","lot","log"]
 
 Output: 0
 
-Explanation: The endWord "cog" is not in wordList, therefore no possible transformation. 
+Explanation: The endWord "cog" is not in wordList, therefore no possible transformation.
 */
 
 /**
@@ -38,13 +40,21 @@ Explanation: The endWord "cog" is not in wordList, therefore no possible transfo
  * @param {string[]} wordList
  * @return {number}
  */
-var ladderLength = function (beginWord, endWord, wordList) {
-
-    function findNext(word, wordList) {
-        for (let i = 0; i < word.length; i++) {
-            for(let j = 'a'; j <= 'z'; j = String.fromCodePoint()){
-                
-            }
+func ladderLength(beginWord string, endWord string, wordList []string) int {
+    queue := []string{beginWord}
+    store := make(map[string]bool)
+    for _, word := range wordList {
+        store[word] = true
+    }
+    if !store[endWord] {
+        return 0
+    }
+    level := 0
+    for len(queue) > 0 {
+        curs := queue
+        queue = make([]string, 0)
+        for _, cur := range curs {
+            
         }
     }
-};
+}
