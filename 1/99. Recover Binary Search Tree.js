@@ -10,6 +10,7 @@
  * @param {TreeNode} root
  * @return {void} Do not return anything, modify root in-place instead.
  */
+<<<<<<< HEAD:1-100/99. Recover Binary Search Tree.js
 var recoverTree = function(root) {
     
     var prev, first, second
@@ -35,3 +36,8 @@ var recoverTree = function(root) {
     first.val = second.val
     second.val = temp
 };
+=======
+const recoverTree = (root) => {
+
+}
+>>>>>>> 7b23857a6c54dadd53990744b56d435d2c61776c:1/99. Recover Binary Search Tree.js
