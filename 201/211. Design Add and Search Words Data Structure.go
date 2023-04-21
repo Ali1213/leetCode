@@ -1,6 +1,5 @@
 package main
 
-import "fmt"
 
 // Runtime
 // 778 ms
