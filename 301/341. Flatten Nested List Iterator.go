@@ -1,4 +1,6 @@
 package main
+
+
 /**
  * // This is the interface that allows for creating nested lists.
  * // You should not implement it, or speculate about its implementation
@@ -64,3 +66,55 @@ func (this *NestedIterator) Next() int {
 func (this *NestedIterator) HasNext() bool {
     return len(this.Ints) != this.Cur
 }
+
+
+// Runtime
+// 0 ms
+// Beats
+// 100%
+// Memory
+// 5.6 MB
+// Beats
+// 47.19%
+
+//  type NestedIterator struct {
+//     Ints []int
+// 	Cur int
+// }
+
+// func reverse(arr []*NestedInteger) []*NestedInteger {
+//     i := 0;
+//     j := len(arr) - 1
+//     for i < j {
+//         arr[i], arr[j] = arr[j], arr[i]
+//         i++;
+//         j--;
+//     }
+//     return arr
+// }
+
+// func Constructor(nestedList []*NestedInteger) *NestedIterator {
+// 	queue := reverse(nestedList)
+// 	ints := make([]int, 0)
+// 	for len(queue) > 0 {
+// 		cur := queue[len(queue) - 1]
+// 		queue = queue[:len(queue) - 1]
+// 		if cur.IsInteger() {
+// 			ints = append(ints, cur.GetInteger())
+// 		}
+// 		list := cur.GetList()
+// 		queue = append(queue, reverse(list)...)
+// 	}
+//     return &NestedIterator{
+//         Ints: ints,
+//     }
+// }
+
+// func (this *NestedIterator) Next() int {
+// 	this.Cur +=1
+//     return this.Ints[this.Cur-1]
+// }
+
+// func (this *NestedIterator) HasNext() bool {
+//     return len(this.Ints) != this.Cur
+// }
