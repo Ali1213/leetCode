@@ -26,7 +26,9 @@ import "strconv"
  // Return the nested list that this NestedInteger holds, if it holds a nested list
  // The list length is zero if this NestedInteger holds a single integer
  // You can access NestedInteger's List element directly if you want to modify it
- func (n NestedInteger) GetList() []*NestedInteger {}
+ func (n NestedInteger) GetList() []*NestedInteger {
+	return make([]*NestedInteger, 0)
+ }
 /**
  * // This is the interface that allows for creating nested lists.
  * // You should not implement it, or speculate about its implementation
