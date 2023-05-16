@@ -21,7 +21,7 @@ func lengthLongestPath(input string) int {
 		depth := len(line) - len(name)
 		
 		if strings.Contains(name,".") {
-			maxLen = max(maxLen, pathLen[depth] + len(name) + 1)
+			maxLen = max(maxLen, pathLen[depth] + len(name))
 		} else {
 			pathLen[depth + 1] = pathLen[depth] + len(name) + 1
 		}
